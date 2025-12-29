@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Unhinged</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>The Daily Unhinged</h1>
+            <p class="tagline">Your daily dose of news with the BS filter engaged</p>
+        </div>
+    </header>
+
+    <main>
+        <aside class="calendar-sidebar">
+            <div class="calendar-nav">
+                <button id="prev-month" aria-label="Previous month">&larr;</button>
+                <span id="current-month"></span>
+                <button id="next-month" aria-label="Next month">&rarr;</button>
+            </div>
+            <div class="calendar" id="calendar"></div>
+            <div class="available-dates">
+                <h3>Available Digests</h3>
+                <ul id="date-list"></ul>
+            </div>
+        </aside>
+
+        <article class="digest-content">
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading digest...</p>
+            </div>
+            <div id="no-digest" class="no-digest" style="display: none;">
+                <h2>No Digest Available</h2>
+                <p>Select a date from the calendar to view a digest, or check back later for today's news.</p>
+            </div>
+            <div id="digest" class="digest"></div>
+        </article>
+    </main>
+
+    <footer>
+        <p>Powered by AWS Lambda + Bedrock | <a href="https://github.com/FeynTech/daily-unhinged-site" target="_blank">GitHub</a></p>
+        <p class="disclaimer">Remember: Question everything, especially this newsletter.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

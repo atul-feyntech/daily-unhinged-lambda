@@ -1,0 +1,345 @@
+/* The Daily Unhinged - Minimalistic Theme */
+
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-tertiary: #1a1a2e;
+    --accent: #e94560;
+    --accent-hover: #ff6b6b;
+    --text-primary: #f0f0f0;
+    --text-secondary: #a0a0a0;
+    --text-muted: #666;
+    --border: #2a2a3e;
+    --success: #4ade80;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tagline {
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+/* Main Layout */
+main {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: calc(100vh - 200px);
+}
+
+/* Calendar Sidebar */
+.calendar-sidebar {
+    width: 300px;
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-nav button {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.calendar-nav button:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+#current-month {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Calendar Grid */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-bottom: 2rem;
+}
+
+.calendar .day-header {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding: 0.5rem 0;
+}
+
+.calendar .day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--bg-tertiary);
+}
+
+.calendar .day:hover {
+    background: var(--border);
+}
+
+.calendar .day.empty {
+    background: transparent;
+    cursor: default;
+}
+
+.calendar .day.has-digest {
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+}
+
+.calendar .day.has-digest:hover {
+    background: var(--accent-hover);
+}
+
+.calendar .day.today {
+    border: 2px solid var(--accent);
+}
+
+.calendar .day.selected {
+    box-shadow: 0 0 0 2px var(--text-primary);
+}
+
+/* Available Dates List */
+.available-dates {
+    margin-top: 1rem;
+}
+
+.available-dates h3 {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#date-list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#date-list li {
+    padding: 0.5rem;
+    margin-bottom: 0.25rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+}
+
+#date-list li:hover {
+    background: var(--border);
+}
+
+#date-list li.active {
+    background: var(--accent);
+    color: white;
+}
+
+/* Digest Content */
+.digest-content {
+    flex: 1;
+    padding: 2rem 3rem;
+    max-width: 900px;
+}
+
+.loading, .no-digest {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Digest Styling */
+.digest h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+}
+
+.digest h2 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent);
+    color: var(--text-primary);
+}
+
+.digest h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem;
+    color: var(--text-secondary);
+}
+
+.digest p {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.digest em {
+    color: var(--text-secondary);
+}
+
+.digest strong {
+    color: var(--accent);
+}
+
+.digest a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.digest a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+.digest ul, .digest ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.digest li {
+    margin-bottom: 0.75rem;
+}
+
+.digest hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+}
+
+/* Commentary boxes */
+.digest blockquote,
+.digest p:has(strong:first-child) {
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Footer */
+footer {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.disclaimer {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+    }
+
+    .calendar-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .digest-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.75rem;
+    }
+
+    .digest h1 {
+        font-size: 1.5rem;
+    }
+
+    .digest h2 {
+        font-size: 1.25rem;
+    }
+}
