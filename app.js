@@ -384,4 +384,20 @@ class DigestViewer {
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     new DigestViewer();
+
+    // Back to Top Button
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });
