@@ -2,9 +2,48 @@
 
 > Your daily dose of news with the BS filter engaged.
 
-An autonomous, AI-powered news digest system that scrapes 70+ RSS feeds, ranks stories by importance, and generates irreverent commentary with the personality of "George Carlin meets Richard Feynman."
+An autonomous, AI-powered **Quantitative Satire Engine** that scrapes 70+ RSS feeds, ranks stories by importance, and generates economically rigorous yet deeply unhinged commentary—like if George Carlin had a PhD in Economics and a grudge against the Efficient Market Hypothesis.
 
-**No human in the loop. Just vibes and scheduled triggers.**
+**No human in the loop. Just vibes, scheduled triggers, and the Euler equation.**
+
+---
+
+## 🧠 The "Unhinged Economist" Engine
+
+Powered by **Claude 3.5 Sonnet** and a proprietary knowledge base of economic theory (from Cobb-Douglas to the Todaro Paradox), this system doesn't just summarize news—it mathematically proves why the news is stupid.
+
+### Features
+
+- **Dense Economic Analysis:** High-entropy commentary that respects your time and insults your intelligence
+- **Quantitative Satire:** We don't just say "inflation is bad"; we calculate the shift in the Phillips Curve
+- **Market Predictions:** Specific, unhinged (but theoretically grounded) actionable predictions
+- **Theory Citations:** Every take is backed by actual economic laws—Keynesian Multiplier, Deadweight Loss, CAPM, you name it
+- **LaTeX Equations:** Because nothing says "I'm right" like $Y = AK^\alpha L^{1-\alpha}$
+
+### Output Format
+
+Each story now includes:
+
+```markdown
+### 1. WHEN CENTRAL BANKS PLAY MUSICAL CHAIRS WITH INTEREST RATES
+
+**⚙️ The Mechanism:** Fed raised rates by 25bps, affecting Household
+consumption via the Euler equation and Firm investment through higher
+cost of capital.
+
+> **📊 The Analysis:** Look, when $u'(c_t) = \beta(1+r)u'(c_{t+1})$
+> and you JACK UP that $r$, households rationally defer consumption.
+> But here's the thing—the Fed assumes rational agents, and I've
+> MET humans. The MPC of the lowest quintile (0.218) means stimulus
+> leaks straight to landlords anyway...
+
+**📈 Market Call:** Short consumer discretionary; the Euler equation
+says patience just got more expensive.
+
+**📚 Theory:** Euler Equation, Keynesian Multiplier
+```
+
+---
 
 ## Live Site
 
@@ -150,22 +189,24 @@ so you don't need to click the link.
 
 ## Cost Breakdown
 
-Running this system costs approximately **$0.15 - $0.20 per month**.
+Running this system costs approximately **$1.50 - $2.00 per month** with the Sonnet upgrade.
 
 | Service | Usage | Monthly Cost |
 |---------|-------|--------------|
-| AWS Lambda | 720 GB-seconds | **FREE** (free tier) |
-| AWS Bedrock (Haiku) | ~225K tokens | **~$0.16** |
+| AWS Lambda | ~1,500 GB-seconds | **FREE** (free tier) |
+| AWS Bedrock (Sonnet) | ~300K tokens | **~$1.50** |
 | AWS S3 | ~500 KB | **FREE** |
 | AWS SES | 30 emails | **FREE** |
 | GitHub Pages | Hosting | **FREE** |
 
 ### Per-Run Metrics
-- **Duration:** ~48 seconds
-- **Memory:** 512 MB (176 MB used)
-- **Input tokens:** ~4,000
-- **Output tokens:** ~3,500
-- **Cost per run:** ~$0.005
+- **Duration:** ~60-90 seconds (more reasoning)
+- **Memory:** 512 MB (~180 MB used)
+- **Input tokens:** ~5,000 (includes economic context)
+- **Output tokens:** ~5,000 (dense analysis)
+- **Cost per run:** ~$0.05
+
+*Note: Using Claude 3.5 Sonnet instead of Haiku for better economic reasoning. Worth every basis point.*
 
 ## Local Development
 
@@ -240,7 +281,8 @@ chmod +x teardown.sh
 
 ```
 daily-unhinged/
-├── lambda_function.py    # Main Lambda handler
+├── lambda_function.py    # Main Lambda handler (the Unhinged Economist)
+├── economics_context.md  # Economic theory knowledge base
 ├── deploy.sh             # AWS deployment script
 ├── teardown.sh           # AWS cleanup script
 ├── requirements.txt      # Python dependencies
@@ -251,7 +293,7 @@ daily-unhinged/
     ├── app.js            # Calendar & digest viewer
     └── digests/
         ├── index.json    # Available dates
-        └── YYYY-MM-DD.md # Daily digests
+        └── YYYY-MM-DD.md # Daily digests (now with equations!)
 ```
 
 ## License
