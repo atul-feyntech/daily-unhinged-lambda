@@ -660,3 +660,78 @@ footer a:hover {
 .digest > *:nth-child(8) { animation-delay: 0.4s; }
 .digest > *:nth-child(9) { animation-delay: 0.45s; }
 .digest > *:nth-child(10) { animation-delay: 0.5s; }
+
+/* Theory Links with Tooltips */
+.theory-link {
+    color: var(--accent-purple) !important;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dashed var(--accent-purple);
+    cursor: help;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.theory-link:hover {
+    color: var(--accent-tertiary) !important;
+    border-bottom-color: var(--accent-tertiary);
+}
+
+.theory-link::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-purple);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    font-style: normal;
+    white-space: normal;
+    width: 280px;
+    max-width: 90vw;
+    text-align: left;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.2);
+    pointer-events: none;
+}
+
+.theory-link:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 8px);
+}
+
+/* KaTeX Math Styling */
+.katex {
+    font-size: 1.1em;
+    color: var(--accent-secondary);
+}
+
+.katex-display {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-secondary);
+    overflow-x: auto;
+}
+
+.katex-display > .katex {
+    color: var(--accent-tertiary);
+}
+
+/* Inline math styling */
+.digest p .katex,
+.digest blockquote .katex {
+    background: rgba(78, 205, 196, 0.1);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+}
