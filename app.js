@@ -311,6 +311,9 @@ class DigestViewer {
         digestEl.innerHTML = marked.parse(markdown);
 
         // Render LaTeX equations with KaTeX
+        // First, protect currency symbols from being interpreted as LaTeX
+        this.protectCurrencySymbols(digestEl);
+
         if (typeof renderMathInElement !== 'undefined') {
             renderMathInElement(digestEl, {
                 delimiters: [
@@ -319,12 +322,40 @@ class DigestViewer {
                     {left: '\\(', right: '\\)', display: false},
                     {left: '\\[', right: '\\]', display: true}
                 ],
-                throwOnError: false
+                throwOnError: false,
+                ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
             });
         }
 
         // Add theory tooltips
         this.addTheoryTooltips(digestEl);
+    }
+
+    protectCurrencySymbols(container) {
+        // Replace currency $ symbols with HTML entity to prevent KaTeX from parsing them
+        // Currency pattern: $ followed by number (e.g., $40, $1.5, $100M, $23 BILLION)
+        const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+
+        while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+        }
+
+        textNodes.forEach(node => {
+            const text = node.textContent;
+            // Match $ followed by numbers, possibly with decimals, K/M/B suffixes, or words like BILLION
+            // But NOT math expressions like $x$ or $\alpha$
+            const currencyPattern = /\$(\d+(?:\.\d+)?(?:\s*(?:K|M|B|BILLION|MILLION|TRILLION|billion|million|trillion))?)/g;
+
+            if (currencyPattern.test(text)) {
+                const newText = text.replace(currencyPattern, '&#36;$1');
+                if (newText !== text) {
+                    const span = document.createElement('span');
+                    span.innerHTML = newText;
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
     }
 
     addTheoryTooltips(container) {
