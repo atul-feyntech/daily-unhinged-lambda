@@ -311,14 +311,11 @@ class DigestViewer {
         digestEl.innerHTML = marked.parse(markdown);
 
         // Render LaTeX equations with KaTeX
-        // First, protect currency symbols from being interpreted as LaTeX
-        this.protectCurrencySymbols(digestEl);
-
+        // Only use $$ for math to avoid conflicts with currency $ symbols
         if (typeof renderMathInElement !== 'undefined') {
             renderMathInElement(digestEl, {
                 delimiters: [
-                    {left: '$$', right: '$$', display: true},
-                    {left: '$', right: '$', display: false},
+                    {left: '$$', right: '$$', display: false},
                     {left: '\\(', right: '\\)', display: false},
                     {left: '\\[', right: '\\]', display: true}
                 ],
